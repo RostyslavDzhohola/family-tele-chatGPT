@@ -1,17 +1,20 @@
 {
   "name": "telegram-bot",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Telegram bot for my family",
+  "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bot.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "node-telegram-bot-api": "^0.66.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
