@@ -41,7 +41,7 @@ npm start
 ### Usage
 - `/start` - Welcome message
 - `/help` - List of commands
-- Mention the bot (`@znayka_gpt_bot` or `всезнайка`) to ask questions.
+- Mention the bot (`@your_bot_name` or `name`) to ask questions.
 
 ### Deploying to Heroku (Mac Users)
 1. Install the Heroku CLI using Homebrew:
