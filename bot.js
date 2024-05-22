@@ -8,14 +8,12 @@ const bot = new TelegramBot(token, { polling: true });
 
 // Handle /start command
 bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, 'Welcome to the OpenAI chatbot! By rostyslav dzhohola');
+  bot.sendMessage(msg.chat.id, 'Ласкаво просимо до чат-бота OpenAI!');
 });
-bot.onText(/\/surprise/, (msg) => {
-  bot.sendMessage(msg.chat.id, 'Sorry, this feature is not implemented yet.');
-});
-bot.onText(/\/date/, (msg) => {
-  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  bot.sendMessage(msg.chat.id, `Today's date is: ${date}`);
+
+// Handle /help command
+bot.onText(/\/help/, (msg) => {
+  bot.sendMessage(msg.chat.id, 'Команди:\n/start - Почати\n/help - Допомога\nПоставте питання, зазначивши @znayka_gpt_bot');
 });
 
 
