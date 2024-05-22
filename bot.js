@@ -17,6 +17,8 @@ bot.onText(/\/date/, (msg) => {
   const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   bot.sendMessage(msg.chat.id, `Today's date is: ${date}`);
 });
+
+
 // Handle messages mentioning the bot
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
@@ -28,11 +30,13 @@ bot.on('message', async (msg) => {
     bot.sendChatAction(chatId, 'typing');
 
     const query = text.replace('@znayka_gpt_bot', '').replace('всезнайка', '').trim();
-    const prompt = `Відповідай українською мовою на наступне запитання: ${query}`;
+    const prompt = `Відповідай українською мовою на наступне повідомлення: ${query}`;
 
     try {
+
       // Send a placeholder message
       const placeholderMessage = await bot.sendMessage(chatId, 'думаю 🤔...');
+      console.log("chatId = ", chatId);
 
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: "gpt-4o",
