@@ -28,6 +28,8 @@ A Telegram bot using OpenAI and Telegram API.
    OPENAI_API_KEY=your-openai-api-key
    ```
 
+4. Create a bot with Telegram BotFather to get the `TELEGRAM_BOT_TOKEN`. You can contact BotFather [here](https://telegram.me/BotFather).
+
 ### Running the Bot
 Start the bot with:
 ```sh
@@ -39,8 +41,7 @@ npm start
 - `/help` - List of commands
 - Mention the bot (`@znayka_gpt_bot` or `всезнайка`) to ask questions.
 
-
-### Deploying to Heroku
+### Deploying to Heroku (Mac Users)
 1. Install the Heroku CLI using Homebrew:
    ```sh
    brew tap heroku/brew && brew install heroku
