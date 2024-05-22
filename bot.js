@@ -24,10 +24,16 @@ bot.on('message', async (msg) => {
 
   // Ensure text is defined before checking for mentions
   if (text && (text.includes('@znayka_gpt_bot') || text.includes('всезнайка'))) {
+    console.log("processing...");
+    bot.sendChatAction(chatId, 'typing');
+
     const query = text.replace('@znayka_gpt_bot', '').replace('всезнайка', '').trim();
     const prompt = `Відповідай українською мовою на наступне запитання: ${query}`;
 
     try {
+      // Send a placeholder message
+      const placeholderMessage = await bot.sendMessage(chatId, 'думаю 🤔...');
+
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: "gpt-4o",
         messages: [{ role: "user", content: prompt }],
@@ -39,7 +45,8 @@ bot.on('message', async (msg) => {
       });
 
       const reply = response.data.choices[0].message.content.trim();
-      bot.sendMessage(chatId, reply);
+      // Edit the placeholder message with the actual response
+      bot.editMessageText(reply, { chat_id: chatId, message_id: placeholderMessage.message_id });
     } catch (error) {
       bot.sendMessage(chatId, 'Error processing your request.');
       console.error(error);
