@@ -30,6 +30,8 @@ A Telegram bot using OpenAI and Telegram API.
 
 4. Create a bot with Telegram BotFather to get the `TELEGRAM_BOT_TOKEN`. You can contact BotFather [here](https://telegram.me/BotFather).
 
+5. Add the bot to a chat group and give it admin permissions to enable it to work in group chats.
+
 ### Running the Bot
 Start the bot with:
 ```sh
