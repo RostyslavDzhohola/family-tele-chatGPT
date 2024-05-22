@@ -26,7 +26,7 @@ bot.on('message', async (msg) => {
 
   // Ensure text is defined before checking for mentions
   if (text && (text.includes('@znayka_gpt_bot') || text.includes('всезнайка'))) {
-    console.log("processing...");
+    // console.log("processing...");
     bot.sendChatAction(chatId, 'typing');
 
     const query = text.replace('@znayka_gpt_bot', '').replace('всезнайка', '').trim();
@@ -36,7 +36,7 @@ bot.on('message', async (msg) => {
 
       // Send a placeholder message
       const placeholderMessage = await bot.sendMessage(chatId, 'думаю 🤔...');
-      console.log("chatId = ", chatId);
+      // console.log("chatId = ", chatId);
 
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: "gpt-4o",
