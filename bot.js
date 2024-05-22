@@ -12,15 +12,21 @@ const allowedUserId = process.env.ALLOWED_USER_ID;
 
 // Handle /start command
 bot.onText(/\/start/, (msg) => {
-  if (msg.chat.id.toString() === allowedGroupId) {
-    bot.sendMessage(msg.chat.id, 'Ласкаво просимо до чат-бота OpenAI!');
+  const chatId = msg.chat.id;
+  const userId = msg.from.id;
+
+  if (chatId.toString() === allowedGroupId || userId.toString() === allowedUserId) {
+    bot.sendMessage(chatId, 'Ласкаво просимо до чат-бота OpenAI!');
   }
 });
 
 // Handle /help command
 bot.onText(/\/help/, (msg) => {
-  if (msg.chat.id.toString() === allowedGroupId) {
-    bot.sendMessage(msg.chat.id, 'Команди:\n/start - Почати\n/help - Допомога\nПоставте питання, зазначивши @znayka_gpt_bot');
+  const chatId = msg.chat.id;
+  const userId = msg.from.id;
+
+  if (chatId.toString() === allowedGroupId || userId.toString() === allowedUserId) {
+    bot.sendMessage(chatId, 'Команди:\n/start - Почати\n/help - Допомога\nПоставте питання, зазначивши @znayka_gpt_bot');
   }
 });
 
