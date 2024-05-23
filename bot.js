@@ -31,9 +31,11 @@ bot.onText(/\/help/, (msg) => {
  */
 
 bot.onText(/\/userId/, (msg) => {
+  const chatId = msg.chat.id;
   const userId = msg.from.id;
+  const username = msg.from.username || msg.from.first_name;
 
-  bot.sendMessage(userId, `Chat ID: ${userId}`);
+  bot.sendMessage(chatId, `@${username}, your Chat ID is: ${userId}`);
 });
 
 // Handle messages mentioning the bot
