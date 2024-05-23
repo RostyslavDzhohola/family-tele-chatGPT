@@ -8,26 +8,32 @@ const bot = new TelegramBot(token, { polling: true });
 
 // Allowed group and user IDs from environment variables
 const allowedGroupId = process.env.ALLOWED_GROUP_ID;
-const allowedUserId = process.env.ALLOWED_USER_ID;
+const allowedUserIds = process.env.ALLOWED_USER_ID.split(',');
 
 // Handle /start command
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  const userId = msg.from.id;
 
-  if (chatId.toString() === allowedGroupId || userId.toString() === allowedUserId) {
-    bot.sendMessage(chatId, 'Ласкаво просимо до чат-бота OpenAI!');
-  }
+  bot.sendMessage(chatId, 'Ласкаво просимо до чат-бота OpenAI!');
 });
 
 // Handle /help command
+/**
+ * Start of Selection
+ */
 bot.onText(/\/help/, (msg) => {
   const chatId = msg.chat.id;
+
+  bot.sendMessage(chatId, 'Команди:\n/start - Почати\n/help - Допомога\n/userId - Отримати ваш ID\nПоставте питання, зазначивши @znayka_gpt_bot');
+});
+/**
+ * End of Selection
+ */
+
+bot.onText(/\/userId/, (msg) => {
   const userId = msg.from.id;
 
-  if (chatId.toString() === allowedGroupId || userId.toString() === allowedUserId) {
-    bot.sendMessage(chatId, 'Команди:\n/start - Почати\n/help - Допомога\nПоставте питання, зазначивши @znayka_gpt_bot');
-  }
+  bot.sendMessage(userId, `Chat ID: ${userId}`);
 });
 
 // Handle messages mentioning the bot
@@ -37,7 +43,7 @@ bot.on('message', async (msg) => {
   const text = msg.text;
 
   // Ensure the message is from the allowed group or user
-  if (chatId.toString() !== allowedGroupId && userId.toString() !== allowedUserId) {
+  if (chatId.toString() !== allowedGroupId && !allowedUserIds.includes(userId.toString())) {
     return;
   }
 
